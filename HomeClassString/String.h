@@ -1,5 +1,6 @@
 #pragma once
-#include<iostream>
+#include <iostream>
+#include <cstring>
 using std::cin;
 using std::cout;
 using std::endl;
@@ -12,9 +13,7 @@ private:
     static size_t counter;
 
 public:
-
     String() : String(80) {}
-
 
     String(size_t len) : length(len) {
         str = new char[length + 1];
@@ -22,7 +21,6 @@ public:
             str[0] = '\0';
         }
     }
-
 
     String(const char* userStr) : length(userStr ? strlen(userStr) : 0) {
         str = new char[length + 1];
@@ -34,47 +32,37 @@ public:
         }
     }
 
-
-
     String(const String& other) : length(other.length) {
         str = new char[length + 1];
         strcpy_s(str, length + 1, other.str);
-       
     }
-
 
     String& operator=(const String& other);
-
     ~String();
 
-    const char* getStr()const {
+    const char* getStr() const {
         return this->str;
     }
-    const size_t& getLength()const;
-
+    const size_t& getLength() const;
     void setStr(const char* str);
-    
     void input();
-        
-
-
     void print() const;
     static size_t getCounter();
+
+    
+   String operator*(const String& other) const;
 };
 
-inline const size_t& String::getLength() const
-{
+inline const size_t& String::getLength() const {
     return this->length;
 }
 
-
-inline void String::print() const
-{
+inline void String::print() const {
     cout << endl;
-    cout << "Рядок: " << str << "\nДовжина: " << length <<endl;
+    cout << "Рядок: " << str << "\nДовжина: " << length << endl;
 }
 
-inline size_t String::getCounter()
-{
+inline size_t String::getCounter() {
     return counter;
 }
+
